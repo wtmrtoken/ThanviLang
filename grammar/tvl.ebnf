@@ -1,0 +1,11 @@
+program     = "@start", { statement }, "@stop";
+
+statement   = variable_decl
+            | print_stmt;
+
+variable_decl = "store", identifier, "=>", expression;
+
+print_stmt  = "show", "<<", expression;
+
+expression  = number
+            | identifier;
