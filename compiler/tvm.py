@@ -1,22 +1,28 @@
-# ThanviLang (TVL) Compiler
+# ThanviLang (TVL)
 # TVL Virtual Machine (TVM)
 # Founder: Meeravali Velupuri
 
 class TVM:
+
     def __init__(self):
+        self.stack = []
         self.variables = {}
 
-    def execute(self, bytecode):
+    def execute(self, instructions):
         print("TVL Virtual Machine Started")
 
-        for instruction in bytecode:
-            opcode, operand = instruction
+        for opcode, operand in instructions:
 
-            if opcode == "STORE":
-                self.variables[operand] = None
-                print(f"[STORE] {operand}")
+            if opcode == "PUSH":
+                self.stack.append(operand)
+
+            elif opcode == "STORE":
+                self.variables[operand] = self.stack.pop()
+
+            elif opcode == "LOAD":
+                self.stack.append(self.variables.get(operand))
 
             elif opcode == "PRINT":
-                print(f"[OUTPUT] {operand}")
+                print(self.stack.pop())
 
-        print("TVM Execution Completed")
+        print("Execution Finished")
