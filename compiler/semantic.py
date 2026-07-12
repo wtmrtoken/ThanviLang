@@ -1,17 +1,10 @@
-# ThanviLang (TVL)
-# Semantic Analyzer
-# Founder: Meeravali Velupuri
+def analyze(self, program):
+    print("TVL Semantic Analyzer Started")
 
-class SemanticAnalyzer:
+    statements = program.statements if hasattr(program, "statements") else program
 
-    def __init__(self):
-        self.symbols = {}
+    for statement in statements:
+        if hasattr(statement, "name"):
+            self.symbols[statement.name] = statement
 
-    def analyze(self, program):
-        print("TVL Semantic Analyzer Started")
-
-        for statement in program.statements:
-            if hasattr(statement, "name"):
-                self.symbols[statement.name] = statement
-
-        return True
+    return True
